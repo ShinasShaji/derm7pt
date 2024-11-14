@@ -4,9 +4,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import keras
 from keras.preprocessing.image import load_img
-from derm7pt.utils import strings2numeric
-from derm7pt.kerasutils import crop_resize_img
 
+# from derm7pt.utils import strings2numeric
+# from derm7pt.kerasutils import crop_resize_img
+
+from repos.derm7pt.derm7pt.utils import strings2numeric
+from repos.derm7pt.derm7pt.kerasutils import crop_resize_img
 
 class Derm7PtDataset(object):
     # 'names': the name of the tag associated with the image.
@@ -457,7 +460,7 @@ class Derm7PtDataset(object):
             n_cols = len(abbrevs)
             n_rows = 1
         else:
-            n_cols = np.int(np.floor(len(abbrevs) / 2) + (len(abbrevs) % 2))
+            n_cols = np.int64(np.floor(len(abbrevs) / 2) + (len(abbrevs) % 2))
             n_rows = 2
 
         plt.figure(figsize=figsize)
