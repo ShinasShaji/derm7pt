@@ -475,6 +475,20 @@ class Derm7PtDataset(object):
 
 
 class Derm7PtDatasetGroupInfrequent(Derm7PtDataset):
+    # diagnosis = pd.DataFrame([
+    #     {'nums': 0, 'names': 'basal cell carcinoma', 'abbrevs': 'BCC', 'info': 'Common non-melanoma cancer'},
+    #     {'nums': 1,
+    #      'names': ['nevus', 'blue nevus', 'clark nevus', 'combined nevus', 'congenital nevus', 'dermal nevus',
+    #                'recurrent nevus', 'reed or spitz nevus'], 'abbrevs': 'NEV'},
+    #     {'nums': 2,
+    #      'names': ['melanoma', 'melanoma', 'melanoma (in situ)', 'melanoma (less than 0.76 mm)',
+    #                'melanoma (0.76 to 1.5 mm)',
+    #                'melanoma (more than 1.5 mm)', 'melanoma metastasis'], 'abbrevs': 'MEL'},
+    #     {'nums': 3, 'names': ['DF/LT/MLS/MISC', 'dermatofibroma', 'lentigo', 'melanosis',
+    #                           'miscellaneous', 'vascular lesion'], 'abbrevs': 'MISC'},
+    #     {'nums': 4, 'names': 'seborrheic keratosis', 'abbrevs': 'SK'},
+    # ])
+    
     diagnosis = pd.DataFrame([
         {'nums': 0, 'names': 'basal cell carcinoma', 'abbrevs': 'BCC', 'info': 'Common non-melanoma cancer'},
         {'nums': 1,
@@ -484,7 +498,7 @@ class Derm7PtDatasetGroupInfrequent(Derm7PtDataset):
          'names': ['melanoma', 'melanoma', 'melanoma (in situ)', 'melanoma (less than 0.76 mm)',
                    'melanoma (0.76 to 1.5 mm)',
                    'melanoma (more than 1.5 mm)', 'melanoma metastasis'], 'abbrevs': 'MEL'},
-        {'nums': 3, 'names': ['DF/LT/MLS/MISC', 'dermatofibroma', 'lentigo', 'melanosis',
+        {'nums': 3, 'names': ['dermatofibroma/lentigo/melanosis/miscellaneous', 'dermatofibroma', 'lentigo', 'melanosis',
                               'miscellaneous', 'vascular lesion'], 'abbrevs': 'MISC'},
         {'nums': 4, 'names': 'seborrheic keratosis', 'abbrevs': 'SK'},
     ])
