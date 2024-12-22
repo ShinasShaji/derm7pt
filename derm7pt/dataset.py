@@ -19,14 +19,14 @@ class Derm7PtDataset(object):
 
     # These are the `categories` (i.e., diagnosis + 7pt checklist) from the JBHI paper.
     tags = pd.DataFrame([
-        {'names': 'Diagnosis', 'abbrevs': 'DIAG', 'colnames': 'diagnosis', 'seven_pt': 0},
-        {'names': 'Pigment Network', 'abbrevs': 'PN', 'colnames': 'pigment_network', 'seven_pt': 1, 'info': 'Pigmentation networks in the lesion may be classified as regular, irregular, or absent based on its presence, prominency of the pigmentation, and its shape or distribution.'},
-        {'names': 'Blue Whitish Veil', 'abbrevs': 'BWV', 'colnames': 'blue_whitish_veil', 'seven_pt': 1, 'info': 'Blue-white veil regions are structureless areas of confluent blue pigment with a ground-glass haze. The colour blue (under dermoscopy) indicates melanin localized within deeper parts of the skin.'},
-        {'names': 'Vascular Structures', 'abbrevs': 'VS', 'colnames': 'vascular_structures', 'seven_pt': 1, 'info': 'Vascular structures appear as red structures which may be absent, regularly distributed, or irregularly distributed in a linear, dotted or globular manner outside areas of regression.'},
-        {'names': 'Pigmentation', 'abbrevs': 'PIG', 'colnames': 'pigmentation', 'seven_pt': 1, 'info': 'Pigmentation is the presence of pigment in the lesion, and may be classified as absent, regular, or irregular for brown, gray and black areas of diffuse pigmentation with irregular shape.'},
-        {'names': 'Streaks', 'abbrevs': 'STR', 'colnames': 'streaks', 'seven_pt': 1, 'info': 'Streaks, also referred to as radial streamings, appear as linear structures  or extensions located at the periphery of a lesion and are classified as absent, regular or irregular depending on their presence, appearance of their intensity, texture, and color distribution.'},
-        {'names': 'Dots and Globules', 'abbrevs': 'DaG', 'colnames': 'dots_and_globules', 'seven_pt': 1, 'info': 'Dots and globules are black, brown or blue round structures that may be regularly or irregularly distributed within the lesion, or absent.'},
-        {'names': 'Regression Structures', 'abbrevs': 'RS', 'colnames': 'regression_structures', 'seven_pt': 1, 'info': 'Regression structures are areas of white scar-like depigmentation or peppering, which may consist of multiple scattered blue-gray dots or granules associated with it.'},
+        {'names': 'Diagnosis', 'abbrevs': 'DIAG', 'colnames': 'diagnosis', 'seven_pt': 0, 'information': ''},
+        {'names': 'Pigment Network', 'abbrevs': 'PN', 'colnames': 'pigment_network', 'seven_pt': 1, 'information': 'Pigmentation networks in the lesion may be classified as regular, irregular, or absent based on its presence, prominency of the pigmentation, and its shape or distribution.'},
+        {'names': 'Blue Whitish Veil', 'abbrevs': 'BWV', 'colnames': 'blue_whitish_veil', 'seven_pt': 1, 'information': 'Blue-white veil regions are structureless areas of confluent blue pigment with a ground-glass haze. The colour blue (under dermoscopy) indicates melanin localized within deeper parts of the skin.'},
+        {'names': 'Vascular Structures', 'abbrevs': 'VS', 'colnames': 'vascular_structures', 'seven_pt': 1, 'information': 'Vascular structures appear as red structures which may be absent, regularly distributed, or irregularly distributed in a linear, dotted or globular manner outside areas of regression.'},
+        {'names': 'Pigmentation', 'abbrevs': 'PIG', 'colnames': 'pigmentation', 'seven_pt': 1, 'information': 'Pigmentation is the presence of pigment in the lesion, and may be classified as absent, regular, or irregular for brown, gray and black areas of diffuse pigmentation with irregular shape.'},
+        {'names': 'Streaks', 'abbrevs': 'STR', 'colnames': 'streaks', 'seven_pt': 1, 'information': 'Streaks, also referred to as radial streamings, appear as linear structures  or extensions located at the periphery of a lesion and are classified as absent, regular or irregular depending on their presence, appearance of their intensity, texture, and color distribution.'},
+        {'names': 'Dots and Globules', 'abbrevs': 'DaG', 'colnames': 'dots_and_globules', 'seven_pt': 1, 'information': 'Dots and globules are black, brown or blue round structures that may be regularly or irregularly distributed within the lesion, or absent.'},
+        {'names': 'Regression Structures', 'abbrevs': 'RS', 'colnames': 'regression_structures', 'seven_pt': 1, 'information': 'Regression structures are areas of white scar-like depigmentation or peppering, which may consist of multiple scattered blue-gray dots or granules associated with it.'},
     ])
     # Info data are added from:
     # Pigment Network: Fabbrocini2014 - Automatic Diagnosis of Melanoma Based on the 7-Point Checklist
@@ -183,6 +183,12 @@ class Derm7PtDataset(object):
             raise ValueError('Error: no tag for `%s`' % str(abbrev))
 
         return tag
+    
+    def get_tag_info_by_abbrev(self, abbrev):
+        """Return the info for a given abbreviation."""
+        tag = self.get_tag_by_abbrev(abbrev)
+
+        return tag.information.iloc[0]
 
     def get_tag_name(self, abbrev):
         tag = self.get_tag_by_abbrev(abbrev)
